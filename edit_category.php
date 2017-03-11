@@ -11,6 +11,7 @@ if(file_exists($filename)){
 }
 
 
+
 if(!empty($_POST)){
 	extract($_POST);
 	$valid = true;
@@ -34,8 +35,7 @@ if(!empty($_POST)){
 				'name' => $name,
 				'slug' => $slug
 			));
-
-			echo "Modification effectuée";
+			echo "La catégorie a bien été modifiée";
 		}else{
 			$select = $db->prepare("INSERT INTO categories (name, slug) VALUES(:name, :slug) ");
 			$select->execute(array(
@@ -43,42 +43,20 @@ if(!empty($_POST)){
 				'slug' => $slug
 			));
 
-			echo "La catégorie a bien été ajouté";
+			echo "La catégorie a bien été ajoutée";
 		}
 	}
 }
 
-/*
-
-if(empty($_POST['name'])){
-	$error_name = "Erreur : ce champ est vide";
-}
-
-if(empty($_POST['slug'])){
-	$error_slug = "Erreur ce champ est vide";
-}
-
-if(isset($_POST['name']) && isset($_POST['slug'])){
-	$name = $db->quote($_POST['name']);
-	$slug = $db->quote($_POST['slug']);
-	if(isset($_GET['id'])){
-		 $id = (int) $_GET['id'];
-		 $select = $db->prepare("UPDATE categories SET name = :name, slug = :slug WHERE id=$id");
-		 $select->execute(array(
-		 	'name' => $name,
-		 	'slug' => $slug
-	 	));
-	 echo "Modification effectuée";
-	}else{
-			$select = $db->prepare("INSERT INTO categories (name, slug) VALUES(:name, :slug) ");
-			$select->execute(array(
-				'name' => $name,
-				'slug' => $slug
-			));
-	echo "Ajout effectué";
+if(isset($_GET['id'])){
+	$id = $db->quote($_GET['id']);
+	$select = $db->query("SELECT * FROM categories WHERE id=$id");
+	$_POST = $select->fetch();
+	$form->set($_POST);
+	if($select->rowCount() == 0){
+		header('Location:index.php');
 	}
 }
-*/
 ?>
 <!DOCTYPE html>
 <html>

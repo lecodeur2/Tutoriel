@@ -2,6 +2,7 @@
 $filename = "lib/config.php";
 require "lib/form.class.php";
 $form = new form();
+$form->set($_POST);
 
 if(file_exists($filename)){
 	require $filename;
@@ -64,16 +65,6 @@ $category = $categories->fetchAll();
 				<a href="view.php?id=<?= $billet['id']; ?>">Voir la suite</a>
 			</div>
 		<?php endforeach; ?>
-		</section>
-		<section id="login">
-			<form method="post">
-				<div class="input">
-					<?= $form->input("text", "name", "votre titre", array("placeholder" => "Votre titre"), null); ?>
-				</div>
-				<div class="input">
-					<?= $form->text("message", "votre message", array("placeholder" => "votre message", "rows" => "20", "cols" => "50"), null) ?>
-				</div>
-			</form>
 		</section>
 	</body>
 </html>
