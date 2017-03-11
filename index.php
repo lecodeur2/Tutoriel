@@ -68,10 +68,10 @@ $category = $categories->fetchAll();
 		<section id="login">
 			<form method="post">
 				<div class="input">
-					<?= $form->input("text", "name", "votre titre", null, array("placeholder" => "Votre titre")); ?>
+					<?= $form->input("text", "name", "votre titre", array("placeholder" => "Votre titre"), null); ?>
 				</div>
 				<div class="input">
-					<?= $form->text("message", "votre message", null, array("placeholder" => "votre message", "rows" => "20", "cols" => "50")); ?>
+					<?= $form->text("message", "votre message", array("placeholder" => "votre message", "rows" => "20", "cols" => "50"), null) ?>
 				</div>
 			</form>
 		</section>

@@ -2,7 +2,7 @@
 
 class form{
 
-	function input($id=null, $type,$field,$label=null, $attributs = array() ){
+	function input($type,$field,$label=null, $attributs = array() , $id=null){
 		$value = isset($_POST[$id]) ? $_POST[$id] : '';
 
 		$r = '';
@@ -17,7 +17,7 @@ class form{
 		return $r;
 	}
 
-	function text($id=null, $field, $label=null, $attributs = array() ){
+	function text($field, $label=null,$attributs = array() , $id=null){
 		$value = isset($_POST[$id]) ? $_POST[$id] : '';
 		$r = '';
 		if($label!=null){
@@ -27,7 +27,12 @@ class form{
 		 foreach($attributs as $k=>$v){
 			$r .= ' '.$k.'="'.$v.'"';
 		}
-		$r .= '></textarea>';
+		$r .= '>'.$value.'</textarea>';
+		return $r;
+	}
+
+	function submit($type, $value){
+		$r = '<input type="'.$type.'" value="'.$value.'">';
 		return $r;
 	}
 }

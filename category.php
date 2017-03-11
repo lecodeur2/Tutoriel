@@ -16,7 +16,8 @@ $categories = $select->fetch();
 
 if(isset($_GET['id'])){
 	$id = $db->quote($_GET['id']); //On sécurise l'entrée  GET pour se prémurir des injections SQL
-
+    $id = (int) $_GET['id'];
+ 
 	$select = $db->query("SELECT categories.name, categories.slug, categories.id , news.name, news.content FROM categories LEFT JOIN news ON categories.id = (news.category_id) WHERE categories.id=$id");
 
 
