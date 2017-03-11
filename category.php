@@ -17,7 +17,7 @@ $categories = $select->fetch();
 if(isset($_GET['id'])){
 	$id = $db->quote($_GET['id']); //On sécurise l'entrée  GET pour se prémurir des injections SQL
 
-	$select = $db->query("SELECT categories.name, categories.slug, categories.id , news.name, news.content FROM categories INNER JOIN news ON categories.id = (news.category_id) WHERE categories.id=$id");
+	$select = $db->query("SELECT categories.name, categories.slug, categories.id , news.name, news.content FROM categories LEFT JOIN news ON categories.id = (news.category_id) WHERE categories.id=$id");
 
 
 	if($select->rowCount() == 0){ // Si aucune catégorie n'existe on redirige l'utilisateur
@@ -26,13 +26,16 @@ if(isset($_GET['id'])){
 	}
 
 	$categories = $select->fetchAll();
+	var_dump($categories);
 }
 
 //var_dump($news);
 ?>
 <html>
 	<head>
-		<title>Titre</title>
+		<?php foreach($categories as $c): ?>
+		<title><?= $title = isset($c['name'])? $c['name'] : 'Tutoriel'; ?></title>
+		<?php endforeach; ?>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/app.css">
 	</head>
