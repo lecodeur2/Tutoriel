@@ -65,5 +65,12 @@ $category = $categories->fetchAll();
 			</div>
 		<?php endforeach; ?>
 		</section>
+		<section id="login">
+			<form method="post">
+				<div class="input">
+					<?= $form->input("text", "name", "votre titre", null, array("placeholder" => "Votre titre")); ?>
+				</div>
+			</form>
+		</section>
 	</body>
 </html>
