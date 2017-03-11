@@ -4,6 +4,7 @@ class form{
 
 	function input($id=null, $type,$field,$label=null, $attributs = array() ){
 		$value = isset($_POST[$id]) ? $_POST[$id] : '';
+
 		$r = '';
 		if($label!=null){
 			$r = '<label for="form'.$field.'">'.$label.'<label>';
@@ -13,6 +14,20 @@ class form{
 			$r .= ' '.$k.'="'.$v.'"';
 		}
 		$r .= '"/>';
+		return $r;
+	}
+
+	function text($id=null, $field, $label=null, $attributs = array() ){
+		$value = isset($_POST[$id]) ? $_POST[$id] : '';
+		$r = '';
+		if($label!=null){
+			$r = '<label for="form'.$field.'">'.$label.'<label>';
+		}
+		$r .='<textarea name="'.$field.'" value="'.$id.'" id="form'.$field;
+		 foreach($attributs as $k=>$v){
+			$r .= ' '.$k.'="'.$v.'"';
+		}
+		$r .= '></textarea>';
 		return $r;
 	}
 }
