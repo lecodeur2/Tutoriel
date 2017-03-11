@@ -70,6 +70,9 @@ $category = $categories->fetchAll();
 				<div class="input">
 					<?= $form->input("text", "name", "votre titre", null, array("placeholder" => "Votre titre")); ?>
 				</div>
+				<div class="input">
+					<?= $form->text("message", "votre message", null, array("placeholder" => "votre message", "rows" => "20", "cols" => "50")); ?>
+				</div>
 			</form>
 		</section>
 	</body>
