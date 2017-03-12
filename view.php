@@ -1,14 +1,5 @@
 <?php
-$filename = "lib/config.php";
-require "lib/form.class.php";
-$form = new form();
-
-if(file_exists($filename)){
-	require $filename;
-}else{
-	echo "Le fichier est manquant";
-	exit();
-}
+require "lib/requires.php";
 
 if(isset($_GET['id'])){
 	$id = (int) $_GET['id'];	
@@ -19,10 +10,8 @@ if(isset($_GET['id'])){
 	if($select->rowCount() == 0){
 		header('Location:index.php');
 	}
-	$news = $select->fetchAll();
+	$posts = $select->fetchAll();
 }
-
-//var_dump($news);
 ?>
 <html>
 	<head>
@@ -41,11 +30,11 @@ if(isset($_GET['id'])){
 		</header>
 		<section id="news">
 			<h1>Liste des news</h1>
-		<?php foreach($news as $billet): ?>
+		<?php foreach($posts as $p): ?>
 			<div class="post">
-				<h3><?= $billet['name']; ?></h3>
+				<h3><?= $p->name; ?></h3>
 				<p>
-					<?= $billet['content']; ?>
+					<?= $p->content; ?>
 				</p>
 			</div>
 		<?php endforeach; ?>

@@ -1,14 +1,5 @@
 <?php
-$filename = "lib/config.php";
-require "lib/form.class.php";
-$form = new form();
-
-if(file_exists($filename)){
-	require $filename;
-}else{
-	echo "Le fichier est manquant";
-	exit();
-}
+require "lib/requires.php";
 
 if(!empty($_POST)){
 	extract($_POST);

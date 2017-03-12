@@ -1,5 +1,13 @@
-FAILLE SQL DETECTER ;) /!\ Attention petite erreur ! 
- 
-N'hesite pas à utiliser is_int (http://php.net/manual/fr/function.is-int.php)
- 
-Concernant rowCount() il y a une petit erreur, est surtout utilise les requêtes préparer 
+/*
+$filename = "lib/config.php";
+require "lib/form.class.php";
+require "lib/flash.class.php";
+$form = new form();
+$session = new session();
+
+if(file_exists($filename)){
+	require $filename;
+}else{
+	echo "Le fichier est manquant";
+	exit();
+} */

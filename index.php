@@ -1,14 +1,6 @@
 <?php
-$filename = "lib/config.php";
-require "lib/form.class.php";
-$form = new form();
+require "lib/requires.php";
 
-if(file_exists($filename)){
-	require $filename;
-}else{
-	echo "Le fichier est manquant";
-	exit();
-}
 
 $select = $db->query('SELECT news.id, news.name, news.content, categories.name AS category_name FROM news INNER JOIN categories ON news.category_id = (categories.id) ORDER BY news.id DESC');
 $news = $select->fetchAll();
@@ -23,6 +15,7 @@ $category = $categories->fetchAll();
 		<link rel="stylesheet" href="assets/css/app.css">
 	</head>
 	<body>
+		<?= $session->flash(); ?>
 		<header id="header">
 			<nav class="nav right">
 			<?php foreach($category as $category): ?>

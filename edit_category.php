@@ -1,14 +1,5 @@
 <?php
-$filename = "lib/config.php";
-require "lib/form.class.php";
-$form = new form();
-
-if(file_exists($filename)){
-	require $filename;
-}else{
-	echo "Le fichier est manquant";
-	exit();
-}
+require "lib/requires.php";
 
 if(!empty($_POST)){
 	extract($_POST);
@@ -34,7 +25,8 @@ if(!empty($_POST)){
 				'name' => $name,
 				'slug' => $slug
 			));
-			echo "La catégorie a bien été modifiée";
+			$session->setFlash("La catégorie a bien été modifiée", "error");
+			header('Location:index.php'); die();
 		}else{
 			$select = $db->prepare("INSERT INTO categories (name, slug) VALUES(:name, :slug) ");
 			$select->execute(array(
@@ -42,7 +34,8 @@ if(!empty($_POST)){
 				'slug' => $slug
 			));
 
-			echo "La catégorie a bien été ajoutée";
+			$session->setFlash("La catégorie a bien été ajoutée", "sucess");
+			header('Location:index.php'); die();
 		}
 	}
 }

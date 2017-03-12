@@ -1,14 +1,5 @@
 <?php
-$filename = "lib/config.php";
-require "lib/form.class.php";
-$form = new form();
-
-if(file_exists($filename)){
-	require $filename;
-}else{
-	echo "Le fichier est manquant";
-	exit();
-}
+require "lib/requires.php";
 
 
 $select = $db->query("SELECT news.id, news.content, news.category_id, news.name, categories.name FROM news INNER JOIN categories ON news.category_id=categories.id");
