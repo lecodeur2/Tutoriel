@@ -13,8 +13,7 @@ if(isset($_GET['id'])){
 
 
 	if($select->rowCount() == 0){ // Si aucune catégorie n'existe on redirige l'utilisateur
-		header('Location:index.php');
-		die();
+		$session->setFlash("Il y a pas de catégorie avec cette ID ou la catégorie n'est reliée à aucun poste", "error"); header('Location:index.php'); die();
 	}
 
 	$categories = $select->fetchAll();

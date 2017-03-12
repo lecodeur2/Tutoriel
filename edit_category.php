@@ -25,8 +25,7 @@ if(!empty($_POST)){
 				'name' => $name,
 				'slug' => $slug
 			));
-			$session->setFlash("La catégorie a bien été modifiée", "error");
-			header('Location:index.php'); die();
+			$session->setFlash("La catégorie a bien été modifiée", "error"); header('Location:index.php'); die();
 		}else{
 			$select = $db->prepare("INSERT INTO categories (name, slug) VALUES(:name, :slug) ");
 			$select->execute(array(
@@ -34,8 +33,7 @@ if(!empty($_POST)){
 				'slug' => $slug
 			));
 
-			$session->setFlash("La catégorie a bien été ajoutée", "sucess");
-			header('Location:index.php'); die();
+			$session->setFlash("La catégorie a bien été ajoutée", "sucess"); header('Location:index.php'); die();
 		}
 	}
 }
@@ -55,7 +53,7 @@ if(isset($_GET['id'])){
 	));
 
 	if($select->rowCount() == 0){
-		header('Location:index.php');
+		$session->setFlash("Il y a pas de catégorie avec ce ID", "error"); header('Location:index.php'); die();
 	}
 }
 ?>
