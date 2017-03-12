@@ -1,2 +1,2 @@
 # Tutoriel
-Tutoriel pour apprendre PHP
+Amérlioration du code PHP et ajout de fonctionnalités 
