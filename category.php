@@ -36,7 +36,7 @@ $category = $category->fetchAll();
 <html>
 	<head>
 		<?php foreach($categories as $c): ?>
-		<title><?= $title = isset($c['name'])? $c['name'] : 'Tutoriel'; ?></title>
+		<title><?= $title = isset($c->name)? $c->name : 'Tutoriel'; ?></title>
 		<?php endforeach; ?>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/app.css">
@@ -44,9 +44,9 @@ $category = $category->fetchAll();
 	<body>
 		<header id="header">
 			<nav class="nav right">
-			<?php foreach($category as $category): ?>
+			<?php foreach($category as $c): ?>
 				<li>
-					<a href="category.php?id=<?= $category['id']; ?>"><?= $category['name']; ?></a>
+					<a href="category.php?id=<?= $c->id; ?>"><?= $c->name; ?></a>
 				</li>
 			<?php endforeach; ?>
 			</nav>
@@ -55,11 +55,11 @@ $category = $category->fetchAll();
 			<h1>Liste des news</h1>
 		<?php foreach($categories as $billet): ?>
 			<div class="post">
-				<h3><?= $billet['name']; ?></h3>
+				<h3><?= $billet->name; ?></h3>
 				<p>
-					<?= $billet['content']; ?>
+					<?= $billet->content; ?>
 				</p>
-				<a href="view.php?id=<?= $billet['id']; ?>">Voir la suite</a>
+				<a href="view.php?id=<?= $billet->id; ?>">Voir la suite</a>
 			</div>
 		<?php endforeach; ?>
 		</section>
