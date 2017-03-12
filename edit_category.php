@@ -12,6 +12,7 @@ if(file_exists($filename)){
 
 if(!empty($_POST)){
 	extract($_POST);
+
 	$valid = true;
 
 	if(empty($name)){
@@ -47,10 +48,19 @@ if(!empty($_POST)){
 }
 
 if(isset($_GET['id'])){
-	$id = $db->quote($_GET['id']);
-	$select = $db->query("SELECT * FROM categories WHERE id=$id");
-	$_POST = $select->fetch();
-	$form->set($_POST);
+	$id = (int) $_GET['id'];
+
+	$select = $db->prepare("SELECT name, slug FROM categories WHERE id = :id LIMIT 1");
+	$select->bindParam(':id', $id, PDO::PARAM_INT);
+	$select->execute();
+
+	$result = $select->fetch();
+
+	$form->set(array(
+		'name' => $result->name,
+		'slug' => $result->slug
+	));
+
 	if($select->rowCount() == 0){
 		header('Location:index.php');
 	}
@@ -59,7 +69,7 @@ if(isset($_GET['id'])){
 <!DOCTYPE html>
 <html>
 <head>
-	<?php echo (isset($_POST['name']))?'<title>'.$_POST['name'].'</title>':'<title> Forum </title>'; ?>
+	<?php echo (isset($result->name))?'<title>'.$result->name.'</title>':'<title> Forum </title>'; ?>
 </head>
 <body>
 	<section id="addpost">

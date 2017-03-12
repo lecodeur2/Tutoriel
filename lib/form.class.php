@@ -1,16 +1,18 @@
 <?php
-
 class form{
 
-	private $data;
+	private $data = array();
 	public $errors;
 
-	function set($data){
-		$this->data = $data;
+	function set(array $datas) {
+		foreach($datas as $key => $value) {
+			$this->data[$key] = $value;
+		}
 	}
-	function input($type, $field, $label=null, $attributs = array()){
 
+	function input($type, $field, $label=null, $attributs = array()){
 		$r = '';
+
 		if($label!=null){
 			$r = '<label for="form'.$field.'">'.$label.'</label>';
 		}
@@ -22,6 +24,7 @@ class form{
 			$r .= ' '.$k.'="'.$v.'"';
 		}
 		$r .= '/>';
+
 		return $r;
 	}
 
