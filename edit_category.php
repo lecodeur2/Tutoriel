@@ -19,7 +19,7 @@ if(!empty($_POST)){
 	if($valid){
 
 		if(isset($_GET["id"])){
-            $id = $db->quote($_GET['id']);
+            $id = (int) $_GET['id'];
 			$select = $db->prepare("UPDATE categories SET name = :name, slug = :slug WHERE id=$id");
 			$select->execute(array(
 				'name' => $name,

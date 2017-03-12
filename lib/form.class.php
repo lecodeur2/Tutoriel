@@ -29,7 +29,6 @@ class form{
 	}
 
 	function text($field, $label=null,$attributs = array() ){
-		$value = isset($_POST[$id]) ? $_POST[$id] : '';
 		$r = '';
 		if($label!=null){
 			$r = '<label for="form'.$field.'">'.$label.'</label>';
@@ -38,7 +37,11 @@ class form{
 		 foreach($attributs as $k=>$v){
 			$r .= ' '.$k.'="'.$v.'"';
 		}
-		$r .= '></textarea>';
+		$r .= '>';
+		if(isset($this->data[$field])){
+			$r .= ' value="'.$this->data[$field].'"';
+		}
+		$r .='</textarea>';
 		return $r;
 	}
 
