@@ -2,7 +2,6 @@
 $filename = "lib/config.php";
 require "lib/form.class.php";
 $form = new form();
-$form->set($_POST);
 
 if(file_exists($filename)){
 	require $filename;
@@ -17,26 +16,6 @@ $news = $select->fetchAll();
 $categories = $db->query("SELECT * FROM categories");
 $category = $categories->fetchAll();
 
-
-// if(isset($_GET['id'])){
-// 	$id = $db->quote($_GET['id']);
-// 	$select = $db->query("SELECT * FROM news WHERE id=$id");
-// 	if($select->rowCount() == 0){
-// 		header('Location:index.php');
-// 	}
-// 		$news = $select->fetchAll();
-// }
-
-// if(isset($_GET['id'])){
-// 	$id = $_GET['id'];
-// 	$select = $db->query("SELECT * FROM categories WHERE id=$id");
-// 	if($select->rowCount() == 0){ // Si aucune catégorie n'existe on redirige l'utilisateur
-// 		header('Location:index.php');
-// 	}
-// 	$categories = $select->fetchAll();
-// }
-
-//var_dump($news);
 ?>
 <html>
 	<head>

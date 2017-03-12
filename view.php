@@ -19,7 +19,6 @@ if(isset($_GET['id'])){
 	if($select->rowCount() == 0){
 		header('Location:index.php');
 	}
-
 	$news = $select->fetchAll();
 }
 

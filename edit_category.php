@@ -10,8 +10,6 @@ if(file_exists($filename)){
 	exit();
 }
 
-
-
 if(!empty($_POST)){
 	extract($_POST);
 	$valid = true;
@@ -61,8 +59,7 @@ if(isset($_GET['id'])){
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add category</title>
-	<meta charset="utf-8">
+	<?php echo (isset($_POST['name']))?'<title>'.$_POST['name'].'</title>':'<title> Forum </title>'; ?>
 </head>
 <body>
 	<section id="addpost">

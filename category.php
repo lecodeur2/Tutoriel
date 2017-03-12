@@ -11,14 +11,14 @@ if(file_exists($filename)){
 }
 
 
-$select = $db->query("SELECT news.id, news.content, news.category_id, news.name FROM news RIGHT JOIN categories ON news.category_id=categories.id");
+$select = $db->query("SELECT news.id, news.content, news.category_id, news.name, categories.name FROM news INNER JOIN categories ON news.category_id=categories.id");
 $categories = $select->fetch();
 
 if(isset($_GET['id'])){
 	$id = $db->quote($_GET['id']); //On sécurise l'entrée  GET pour se prémurir des injections SQL
     $id = (int) $_GET['id'];
  
-	$select = $db->query("SELECT categories.name, categories.slug, categories.id , news.name, news.content FROM categories LEFT JOIN news ON categories.id = (news.category_id) WHERE categories.id=$id");
+	$select = $db->query("SELECT categories.name, categories.slug, categories.id , news.name, news.content FROM categories INNER JOIN news ON categories.id = (news.category_id) WHERE categories.id=$id");
 
 
 	if($select->rowCount() == 0){ // Si aucune catégorie n'existe on redirige l'utilisateur
@@ -27,10 +27,11 @@ if(isset($_GET['id'])){
 	}
 
 	$categories = $select->fetchAll();
-	var_dump($categories);
 }
 
-//var_dump($news);
+$category = $db->query("SELECT id, name FROM categories");
+$category = $category->fetchAll();
+
 ?>
 <html>
 	<head>
@@ -43,7 +44,7 @@ if(isset($_GET['id'])){
 	<body>
 		<header id="header">
 			<nav class="nav right">
-			<?php foreach($categories as $category): ?>
+			<?php foreach($category as $category): ?>
 				<li>
 					<a href="category.php?id=<?= $category['id']; ?>"><?= $category['name']; ?></a>
 				</li>

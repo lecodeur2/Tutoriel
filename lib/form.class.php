@@ -8,8 +8,7 @@ class form{
 	function set($data){
 		$this->data = $data;
 	}
-	function input($type, $field, $label=null, $attributs = array(), $id=null){
-		$value = isset($_POST[$id]) ? $_POST[$id] : '';
+	function input($type, $field, $label=null, $attributs = array()){
 
 		$r = '';
 		if($label!=null){
@@ -26,7 +25,7 @@ class form{
 		return $r;
 	}
 
-	function text($field, $label=null,$attributs = array(), $id=null){
+	function text($field, $label=null,$attributs = array() ){
 		$value = isset($_POST[$id]) ? $_POST[$id] : '';
 		$r = '';
 		if($label!=null){
@@ -36,7 +35,7 @@ class form{
 		 foreach($attributs as $k=>$v){
 			$r .= ' '.$k.'="'.$v.'"';
 		}
-		$r .= '>'.$value.'</textarea>';
+		$r .= '></textarea>';
 		return $r;
 	}
 
